@@ -4,61 +4,54 @@ using std::cout,std::endl;
 #include "IntegerSet.h"
 
 IntegerSet::IntegerSet(){
-    arr = new int[100];
-    for (int i = 0; i < 100; i++)
-    {
-        this->arr[i] = i;
+
+    tam = 100;
+    
+    for (int i = 0 ; i < tam ; i++){
+        arr[i] = 0; 
     }
+        
 }
 
-IntegerSet::IntegerSet(int tam){
-    arr = new int[tam];
-    pos = 0;
-    this->tam = tam;
+IntegerSet::IntegerSet(int array[], int size){
+    for (int i = 0 ; i < size ; i++){
+        arr[n[i]] = 1; 
+    }
+    
+    return *this;
 }
 
-IntegerSet::~IntegerSet(){
-    delete [] arr;
-}
+
 
 IntegerSet &IntegerSet::insertElement(int n){
-    if (pos < tam)
-    {
-        arr[pos++] = n;
-    }
+     this->arr[n] = 1;
+
     return *this;
 }
 
 IntegerSet &IntegerSet::deleteElement(int n){
-    for(int i = 0; i < pos; i++){
-        if(arr[i] == n){
-            for(int j = i; j < pos; j++){
-                arr[j] = arr[j+1];
-            }
-            pos--;
-            break;
-        }
-    }
+    this->arr[n] = 0;
+
     return *this;
 }
 
-
-
 void IntegerSet::print() const{
-    for(int i = 0; i < 100; i++){
-        cout << this->arr[i] << " ";
+    for (int i = 0 ; i < tam ; i++){
+        if (arr[i] == 1){
+            cout << i << " ";
+        }
     }
-    cout << endl;
 }
 
 IntegerSet unionOfSets(const IntegerSet &a, const IntegerSet &b){
-    IntegerSet c(a.tam + b.tam);
-    for(int i = 0; i < a.pos; i++){
-        c.insertElement(a.arr[i]);
+    IntegerSet c;
+    
+    for (int i = 0 ; i < 100 ; i++){
+        if (a.arr[i] == 1 || b.arr[i] == 1){
+            c.arr[i] = 1;
+        }
     }
-    for(int i = 0; i < b.pos; i++){
-        c.insertElement(b.arr[i]);
-    }
+    
     return c;
 }
 
