@@ -14,30 +14,47 @@ Complex::Complex(double real, double imaginary): real(real), imaginary(imaginary
 
 
 Complex Complex::operator+(const Complex &right) const{
-    return Complex(real + right.real, imaginary + right.imaginary);
+    Complex temp;
+    temp.real = real + right.real;
+    temp.imaginary = imaginary + right.imaginary;
+    return temp;
+    //return Complex(real + right.real, imaginary + right.imaginary);
 }
 
 Complex Complex::operator-(const Complex &right) const{
-    return Complex(real - right.real, imaginary - right.imaginary);
+    Complex result;
+    result.real = real - right.real;
+    result.imaginary = imaginary - right.imaginary;
+    return result;
+    //return Complex(real - right.real, imaginary - right.imaginary);
 }
 
-Complex Complex::operator*(const Complex &right) const{
-    return Complex(real * right.real - imaginary * right.imaginary, real * right.imaginary + imaginary * right.real);
+Complex Complex::operator+=(const Complex &right){
+    real += right.real;
+    imaginary += right.imaginary;
+    return *this;
 }
 
-Complex Complex::operator/(const Complex &right) const{
-    return Complex((real * right.real + imaginary * right.imaginary) / (right.real * right.real + right.imaginary * right.imaginary), (imaginary * right.real - real * right.imaginary) / (right.real * right.real + right.imaginary * right.imaginary));
+Complex Complex::operator-=(const Complex &right){
+    real -= right.real;
+    imaginary -= right.imaginary;
+    return *this;
 }
 
-bool Complex::operator==(const Complex &right) const{
-    return real == right.real && imaginary == right.imaginary;
+Complex Complex::operator++(){
+    real = real + 1;
+    imaginary = imaginary + 1;
+    return *this;
 }
 
-bool Complex::operator!=(const Complex &right) const{
-    return real != right.real || imaginary != right.imaginary;
+Complex Complex::operator--(){
+    real = real - 1;
+    imaginary = imaginary - 1;
+    return *this;
 }
 
 void Complex::print() const{
     cout << "(" << real << ", " << imaginary << ")";
+    
 }
 
