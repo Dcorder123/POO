@@ -12,9 +12,11 @@ using std::string;
 class ContaLimite : public Conta {
 
 public:
-ContaLimite(int c , string nome , int saldol, double limite_h= 1200) : Conta(c, nome, saldol) {limite = limite_h;}
+ContaLimite(int c , string nome , int saldol, double limite_h= 1200) : Conta(c, nome, saldol) {
+  limite = limite_h;
+  tipo = "Conta Limite";
+  }
 
-virtual void depositar(double n) { saldo += n; }
 virtual void retirada(double n) {
   if(saldo >n){
     saldo -= n; 
@@ -24,13 +26,15 @@ virtual void retirada(double n) {
       saldo=0;
     }
 }
-
 virtual void extrato() {
-  cout <<"Conta Corrente Limite"<<endl;
-  cout << "O numero da conta é: " << this->numConta << endl
-       << "O nome do(a) dono(a) dela é: " << this->NomeC << endl
-       << "O saldo é: " << this->saldo <<endl<<"e o seu limite é: "<<limite<< endl;
-}
+        cout << "O tipo da conta é: " << this->tipo << endl;
+        cout<< "O número da conta é: " << this->numConta << endl;
+        cout<< "O nome do titular é: " << this->NomeC << endl;
+        cout<< "O saldo é: " << this->saldo << endl;
+        cout<< "O limite é: " << this->limite << endl;
+        cout << endl;
+    }
+
 private:
 double limite;
 };

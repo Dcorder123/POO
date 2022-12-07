@@ -11,16 +11,9 @@ using std::string;
 
 class ContaCorrente : public Conta {
 public:
-ContaCorrente(int numContac, string NomeCc, int saldoc) : Conta(numContac, NomeCc, saldoc) {}
+ContaCorrente(int numContac, string NomeCc, int saldoc) : Conta(numContac, NomeCc, saldoc) {tipo = "Conta Corrente";}
 
-virtual void depositar(double n) { saldo += n; }
-virtual void retirada(double n) { saldo -= n; }
-virtual void extrato() {
-  cout <<"Conta Corrente"<<endl;
-  cout << "O numero da conta é: " << this->numConta << endl
-       << "O nome do(a) dono(a) dela é: " << this->NomeC << endl
-       << "O saldo é: " << this->saldo << endl;
-  }
+
 };
 
 #endif
