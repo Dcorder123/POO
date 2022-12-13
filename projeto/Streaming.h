@@ -20,7 +20,6 @@ public:
     virtual void run();//executa o app exibir as producoes e o usuario escolhe uma para assistir
 protected:
     vector<Producao*> producoes;
-    string nome;
 };
 
 #endif // STREAMING_H

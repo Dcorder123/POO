@@ -7,7 +7,7 @@ using namespace std;
 class App
 {
 public:
-    App();
+    App(string nome, string versao): nome(nome), versao(versao){}
     void setNome(string){this->nome = nome;}
     void setVersao(string){this->versao = versao;}
     string getNome(){return nome;}
