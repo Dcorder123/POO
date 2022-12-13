@@ -6,7 +6,6 @@
 
 using namespace std;
 
-Streaming::Streaming(string nome, string versao) : App(nome, versao){}
 
 Producao &Streaming::operator << (Producao &p)
 {

@@ -7,7 +7,7 @@
 #include <vector>
 using std::vector;
 
-class SmartTV : public App
+class SmartTV 
 {
     friend SmartTV &operator << (App &a, SmartTV &s);//adiciona app
     friend SmartTV &operator >> (App &a, SmartTV &s);//remove app
