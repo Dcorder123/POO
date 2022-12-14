@@ -9,7 +9,11 @@
 class Time : public App
 {
 public:
-  Time(); //construtor
+  Time(string, string ) : App(nome, versao) {
+    time_t t = time(0);
+    struct tm * now = localtime( & t );
+    setTime( (now->tm_hour),(now->tm_min),(now->tm_sec));
+  }
 
   //funções set
   void setTime(int , int, int); //protótipo

@@ -4,10 +4,23 @@
 
 using namespace std;
 
-Producao::Producao(string n, vector<Ator> a, vector<Diretor> d) {
+Producao::Producao(string n, vector<Ator> a, vector<Diretor> d, string t) {
     setNome(n);
-    atores = a;
-    diretores = d;
+    for (int i = 0; i < a.size(); i++) {
+        atores.push_back(a[i]);
+    }
+    for (int i = 0; i < d.size(); i++) {
+        diretores.push_back(d[i]);
+    }
+    tipo = t;
+    if (tipo == "Filme") {
+        cout << "Filme criado com sucesso!" << endl;
+        
+    }
+    else if (tipo == "Serie") {
+        cout << "Serie criada com sucesso!" << endl;
+    }
+    
 }
 
 void Producao::removerAtor(Ator a) {

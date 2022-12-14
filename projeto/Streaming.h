@@ -15,8 +15,8 @@ class Streaming : public App
 
 public:
     Streaming(string nome, string versao);
-    Producao &operator << (Producao &p);//adiciona producao
-    Producao &operator >> (Producao &p);//remove producao
+    Streaming &operator << (Producao &p);//adiciona producao
+    Streaming &operator >> (Producao &p);//remove producao
     virtual void run();//executa o app exibir as producoes e o usuario escolhe uma para assistir
 protected:
     vector<Producao*> producoes;

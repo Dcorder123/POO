@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Filme::Filme(string n, vector<Ator> a, vector<Diretor> d, double dura) : Producao(n, a, d) {
+Filme::Filme(string n, vector<Ator> a, vector<Diretor> d, double dura, string t) : Producao(n, a, d, t) {
     setDuracao(dura);
 }
 

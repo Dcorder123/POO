@@ -12,7 +12,8 @@ using namespace std;
 
 class Producao {
 public:
-    Producao(string n, vector<Ator> a, vector<Diretor> d);
+    Producao(string n, vector<Ator> a, vector<Diretor> d, string t);
+
     string getNome() { return nome; }
     void setNome(string n) { nome = n; }
     void addAtor(Ator a) { atores.push_back(a); }
@@ -26,6 +27,7 @@ protected:
     string nome;
     vector<Ator> atores;
     vector<Diretor> diretores;
+    string tipo;
 };
 
 #endif

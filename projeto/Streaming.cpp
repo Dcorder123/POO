@@ -4,16 +4,24 @@
 #include "Filme.h"
 #include "Series.h"
 
-using namespace std;
+using std::cout;
+using std::endl;
+using std::cin;
+using std::string;
+using std::vector;
+using std::ostream;
 
-
-Producao &Streaming::operator << (Producao &p)
+Streaming::Streaming(string n, string v): App(n, v)
 {
-    producoes.push_back(&p);
-    return p;
 }
 
-Producao &Streaming::operator >> (Producao &p)
+Streaming &Streaming::operator << (Producao &p)
+{
+    producoes.push_back(&p);
+    return *this;
+}
+
+Streaming &Streaming::operator >> (Producao &p)
 {
     for(int i = 0; i < producoes.size(); i++)
     {
@@ -22,24 +30,31 @@ Producao &Streaming::operator >> (Producao &p)
             producoes.erase(producoes.begin() + i);
         }
     }
-    return p;
+    return *this;
 }
 
 void Streaming::run()
 {
-    cout << "Streaming: " << nome << endl;
-    cout << "Versao: " << versao << endl;
-    cout << "Producoes: " << endl;
-    for(int i = 0; i < producoes.size(); i++)
-    {
-        cout << i << " - " << producoes[i]->getNome() << endl;
-    }
+    cout << *this;
     cout << "Escolha uma producao para assistir: " << endl;
     int escolha;
     cin >> escolha;
+    cout << "Assistindo: " << producoes[escolha]->getNome() << endl;
+    cout << endl;
     producoes[escolha]->play();
 }
 
+ostream &operator << (ostream &out, Streaming &s)
+{
+    out << "Streaming: " << s.nome << endl;
+    out << "Versao: " << s.versao << endl;
+    out << "Producoes: " << endl;
+    for(int i = 0; i < s.producoes.size(); i++)
+    {
+        out << i << " - " << s.producoes[i]->getNome() << endl;
+    }
+    return out;
+}
 
 
 // Path: projeto/Streaming.h

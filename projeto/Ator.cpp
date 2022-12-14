@@ -10,4 +10,5 @@ Ator::Ator(string n, string t) : Pessoa(n) {
 void Ator::imprimir() {
     Pessoa::imprimir();
     cout << "Tempo de carreira: " << getTempoDeCarreira() << endl;
+    cout << endl;
 }

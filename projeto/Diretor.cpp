@@ -11,4 +11,5 @@ Diretor::Diretor(string n, int n_producoes) : Pessoa(n) {
 void Diretor::imprimir() {
     Pessoa::imprimir();
     cout << "Quantidade de produções: " << getQtdProducoes() << endl;
+    cout << endl;
 }

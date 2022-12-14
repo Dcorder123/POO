@@ -11,12 +11,6 @@ using std::setw;
 #include "Time.h"
 
 
-Time::Time() : App(){
-  time_t t = time(0);
-  struct tm * now = localtime( & t );
-  setTime( (now->tm_hour),(now->tm_min),(now->tm_sec));
-}
-
 void Time::setTime(int h, int m, int s)
 {
   setHour(h);
