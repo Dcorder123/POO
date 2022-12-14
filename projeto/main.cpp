@@ -32,14 +32,17 @@ int main() {
     Ator a7("Talia Shire", "20 anos");
     Ator a8("John Cazale", "10 anos");
     
-    vector<Diretor> diretores{d2,teste};
+    vector<Diretor> diretores{d2};
     vector<Ator> atores{a2, a3, a4, a5, a6, a7, a8};
     
     Filme f1("O Poderoso Chefão", atores, diretores, 175, "Filme");
+    Filme f2("O Poderoso Chefão 2", atores, diretores, 200, "Filme");
     //f1.play();
 
     s1 << f1;
-    s1.run();
-
+    s1 << f2;
+    s << s1;
+    s.run();
+    
     return 0;
 }
