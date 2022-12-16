@@ -4,6 +4,7 @@
 #include "SmartTV.h"
 #include "App.h"
 #include "Time.h"
+#include "Estado.h"
 
 using std :: cout;
 using std :: endl;
@@ -40,8 +41,10 @@ SmartTV &operator >> (SmartTV &s, App &a)
 
 void SmartTV::run()
 {
+    estado.guardarEstado(0);
     while (true)
     {
+        
         cout << "                      Menu" << endl;
         cout << "-----------------------------------------------" << endl;
         cout << "1 - Ligar" << endl;
@@ -74,6 +77,7 @@ void SmartTV::run()
             this->desligar();
             break;
         case 3:
+            estado.guardarEstado(1);
             this->exibirApps();
             break;
         case 4:
@@ -113,10 +117,11 @@ void SmartTV::exibirApps()
             }
             if (opcao >= 0 && opcao < apps.size())
             {
-                apps[opcao]->run();
+                apps[opcao]->run(estado);
             }
             else if(opcao == -1)
             {
+                estado.removerEstado();
                 return;
             }
             else if (opcao < 0 || opcao > apps.size()) {
@@ -187,6 +192,7 @@ void SmartTV::ligar()
     ligada = true;
     cout << "A TV foi ligada" << endl;
     carregarDados();
+    
 }
 
 void SmartTV::desligar()

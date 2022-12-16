@@ -6,7 +6,7 @@
 class Diretor : public Pessoa {
 public:
     Diretor(string n, int n_producoes);
-    int getQtdProducoes() { return qtd_Producoes; }
+    int getQtdProducoes() const{ return qtd_Producoes; }
     void setQtdProducoes(int n_producoes) { qtd_Producoes = n_producoes; }
     void imprimir();
 protected:

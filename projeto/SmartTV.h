@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "Estado.h"
 using std::vector;
 
 class SmartTV 
@@ -27,6 +28,7 @@ protected:
     string modelo;
     string versao_so;
     bool ligada;
+    Estado estado;
 };
 
 #endif // SMARTTV_H

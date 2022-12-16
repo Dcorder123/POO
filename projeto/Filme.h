@@ -12,7 +12,7 @@ using namespace std;
 class Filme : public Producao {
 public:
     Filme(string n, vector<Ator> a, vector<Diretor> d, double duracao, string t);
-    double getDuracao() { return duracao; }
+    double getDuracao() const{ return duracao; }
     void setDuracao(double d) { duracao = d; }
     virtual void play();
 

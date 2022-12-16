@@ -14,7 +14,7 @@ class Producao {
 public:
     Producao(string n, vector<Ator> a, vector<Diretor> d, string t);
 
-    string getNome() { return nome; }
+    string getNome() const{ return nome; }
     void setNome(string n) { nome = n; }
     void addAtor(Ator a) { atores.push_back(a); }
     void addDiretor(Diretor d) { diretores.push_back(d); }

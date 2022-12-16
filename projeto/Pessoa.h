@@ -9,7 +9,7 @@ using namespace std;
 class Pessoa {
 public:
     Pessoa(string n );
-    string getNome() { return nome; }
+    string getNome() const{ return nome; }
     void setNome(string n) { nome = n; }
     void imprimir();
 

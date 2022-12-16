@@ -14,8 +14,11 @@
 using namespace std;
 
 int main() {
-    SmartTV s("Samsung", "QLED", "Android");
-    Streaming s1("Netflix", "Brasil");
+    SmartTV tv("Samsung", "QLED", "Android");
+    Streaming netflix("Netflix", "Brasil");
+    Streaming disney("Disney+", "Brasil");
+    Streaming amazon("Amazon Prime", "Brasil");
+
     Hora h1;
     Diretor d2("Francis Ford Coppola", 27);
     Diretor teste("teste", 30);
@@ -38,13 +41,12 @@ int main() {
     
     Filme f1("O Poderoso Chefão", atores, diretores, 175, "Filme");
     Filme f2("O Poderoso Chefão 2", atores, diretores, 200, "Filme");
-    //f1.play();
-
-    s1 << f1;
-    s1 << f2;
-    s << s1;
-    s << h1;
-    s.run();
+    
+    netflix << f1;
+    netflix << f2;
+    tv << netflix;
+    tv << h1;
+    tv.run();
     
     return 0;
 }

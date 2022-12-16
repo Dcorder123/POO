@@ -33,12 +33,27 @@ Streaming &Streaming::operator >> (Producao &p)
     return *this;
 }
 
-void Streaming::run()
-{
+void Streaming::run(Estado &e)
+{  
     cout << *this;
     cout << "Escolha uma producao para assistir: " << endl;
-    int escolha;
+    cout << "(-1 para voltar)" << endl;
+    double escolha;
     cin >> escolha;
+    if (cin.fail()) {
+        // Limpar o estado de falha de entrada
+        cin.clear();
+        // Descartar o caractere inválido da entrada
+        cin.ignore();
+        // Descartar a linha inteira
+        cout << "Entrada invalida" << endl;
+        return;
+    }
+    if  (escolha == -1)
+    {
+        return;
+    }
+
     cout << "Assistindo: " << producoes[escolha]->getNome() << endl;
     cout << endl;
     producoes[escolha]->play();

@@ -10,7 +10,7 @@ using namespace std;
 class Ator : public Pessoa {
 public:
     Ator(string n, string t);
-    string getTempoDeCarreira() { return tempo_de_carreira; }
+    string getTempoDeCarreira() const{ return tempo_de_carreira; }
     void setTempoDeCarreira(string t) { tempo_de_carreira = t; }
     void imprimir();
 protected:
