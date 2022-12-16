@@ -16,6 +16,7 @@ using namespace std;
 int main() {
     SmartTV s("Samsung", "QLED", "Android");
     Streaming s1("Netflix", "Brasil");
+    Hora h1;
     Diretor d2("Francis Ford Coppola", 27);
     Diretor teste("teste", 30);
     Diretor d3("Martin Scorsese", 30);
@@ -42,6 +43,7 @@ int main() {
     s1 << f1;
     s1 << f2;
     s << s1;
+    s << h1;
     s.run();
     
     return 0;

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 using std::vector;
 
 class SmartTV 
@@ -14,8 +15,11 @@ class SmartTV
 public:
     SmartTV(string marca, string modelo, string versao_so);
     void run();//executa o app
-    void ligar(){ligada = true;}
-    void desligar(){ligada = false;}
+    void ligar();
+    void desligar();
+    void exibirApps();
+    bool salvarDados();
+    bool carregarDados();
 
 protected:
     vector<App*> apps;

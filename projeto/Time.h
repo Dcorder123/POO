@@ -1,51 +1,39 @@
-//impede que múltiplas inclusões ocorram
 #ifndef TIME_H
 #define TIME_H
 
 #include <iostream>
 #include <string>
+
+using namespace std;
+
 #include "App.h"
 
-class Time : public App
+class Hora : public App
 {
-public:
-  Time(string, string ) : App(nome, versao) {
-    time_t t = time(0);
-    struct tm * now = localtime( & t );
-    setTime( (now->tm_hour),(now->tm_min),(now->tm_sec));
-  }
-
-  //funções set
-  void setTime(int , int, int); //protótipo
-
-  //forma 1
-  inline void setHour( int );
-
-  //forma 2 - ver arquivo cpp
-  void setMinute( int );
-
-  //forma 3
-  void setSecond( int s ){
-    second = (s >= 0 && s < 60) ? s : 0;
-  }
-  
-
-  //funções get
-
-  //forma 4
-  inline int getHour() {return hour;}
-  inline int getMinute() {return minute;}
-  inline int getSecond() {return second;}
-
-  void printUniversal();
-  void printStandard();
-  
-  virtual void run();
-
-private:
-  int hour;
-  int minute;
-  int second;
+    public:
+        Hora();
+        Hora(int Dia, int Mes, int Ano, int hora, int minuto, int segundo);
+        void setDia(int Dia){this->Dia = Dia;} //seta o dia
+        int getDia()const{return Dia;} //retorna o dia
+        void setMes(int Mes){this->Mes = Mes;} //seta o mes
+        int getMes()const{return Mes;} //retorna o mes
+        void setAno(int Ano){this->Ano = Ano;} //seta o ano
+        int getAno()const{return Ano;} //retorna o ano
+        void setHora(int hora){this->hora = hora;} //seta a hora
+        int getHora()const{return hora;} //retorna a hora
+        void setMinuto(int minuto){this->minuto = minuto;} //seta o minuto
+        int getMinuto()const{return minuto;} //retorna o minuto
+        void setSegundo(int segundo){this->segundo = segundo;} //seta o segundo
+        int getSegundo()const{return segundo;} //retorna o segundo
+        void horaAtual(); //retorna a hora atual
+        virtual void run();
+    protected:
+        int Dia; 
+        int Mes;
+        int Ano;
+        int hora;
+        int minuto;
+        int segundo;
 };
 
 #endif

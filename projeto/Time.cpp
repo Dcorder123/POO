@@ -1,47 +1,43 @@
 #include <iostream>
-#include <ctime>
-using std::cout;
-using std::endl;
-
-//biblioteca que permite alguns controles sobre a saída
+#include <string>
 #include <iomanip>
-using std::setfill; 
-using std::setw;
 
 #include "Time.h"
+#include "App.h"
 
+using namespace std;
 
-void Time::setTime(int h, int m, int s)
+Hora::Hora() : App("Hora", "1.0")
 {
-  setHour(h);
-  setMinute(m);
-  setSecond(s);  
 }
 
-void Time::setHour(int h)
+Hora::Hora(int Dia, int Mes, int Ano, int hora, int minuto, int segundo) : App("Hora", "1.0")
 {
-  hour = (h >= 0 && h < 24) ? h : 0;
+    this->Dia = Dia;
+    this->Mes = Mes;
+    this->Ano = Ano;
+    this->hora = hora;
+    this->minuto = minuto;
+    this->segundo = segundo;
 }
 
-//forma 2
-inline void Time::setMinute(int m)
+void Hora::horaAtual()
 {
-  minute = (m >= 0 && m < 60) ? m : 0;
+    // Obtem a data e hora atual.
+    time_t t = time(0);
+    struct tm * now = localtime( & t );
+    this->Dia = now->tm_mday;
+    this->Mes = now->tm_mon + 1;
+    this->Ano = now->tm_year + 1900;
+    this->hora = now->tm_hour;
+    this->minuto = now->tm_min;
+    this->segundo = now->tm_sec;
 }
 
-void Time::printUniversal()
+void Hora::run()
 {
-  cout << setfill('0') << setw(2) << getHour() << ":" <<
-  setw(2) << getMinute() << ":" << setw(2) << getSecond() << endl;
-}
-
-void Time::printStandard()
-{
-  cout << ( (getHour() == 0 || getHour() == 12) ? 12 : getHour() % 12) << ":" << setfill('0') << setw(2) << getMinute() << ":" << setw(2) << getSecond() << (getHour() < 12 ? " AM" : " PM") << endl;
-}
-
-void Time::run(){
-  cout << "Time" << endl;
-  cout << "Standard: ";
-  printStandard();
+    // Imprime a data e hora atual.
+    horaAtual();
+    cout << "Data: " << getDia() << "/" << getMes() << "/" << getAno() << endl;
+    cout << "Hora: " << ( (getHora() == 0 || getHora() == 12) ? 12 : getHora() % 12) << ":" << setfill('0') << setw(2) << getMinuto() << ":" << setw(2) << getSegundo() << (getHora() < 12 ? " AM" : " PM") << endl;
 }

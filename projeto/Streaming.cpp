@@ -56,5 +56,4 @@ ostream &operator << (ostream &out, Streaming &s)
     return out;
 }
 
-
 // Path: projeto/Streaming.h
