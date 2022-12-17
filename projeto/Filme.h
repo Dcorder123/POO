@@ -14,7 +14,8 @@ public:
     Filme(string n, vector<Ator> a, vector<Diretor> d, double duracao, string t);
     double getDuracao() const{ return duracao; }
     void setDuracao(double d) { duracao = d; }
-    virtual void play();
+    virtual void play()override;
+    
 
 protected:
     double duracao;

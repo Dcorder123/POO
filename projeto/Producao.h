@@ -21,6 +21,7 @@ public:
     void removerAtor(Ator a);
     void removerDiretor(Diretor d);
     virtual void play() = 0;
+    string getTipo() const { return tipo; }
 
 
 protected:

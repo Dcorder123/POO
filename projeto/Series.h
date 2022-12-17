@@ -12,6 +12,7 @@ public:
     Series(string n, vector<Ator> a, vector<Diretor> d, int n_episodios, string t);
     int getNEpisodios() const { return n_episodios; }
     void setNEpisodios(int n) { n_episodios = n; }
+    string getTipo() const { return tipo; }
     virtual void play();
 
 protected:

@@ -13,13 +13,6 @@ Producao::Producao(string n, vector<Ator> a, vector<Diretor> d, string t) {
         diretores.push_back(d[i]);
     }
     tipo = t;
-    if (tipo == "Filme") {
-        cout << "Filme criado com sucesso!" << endl;
-        
-    }
-    else if (tipo == "Serie") {
-        cout << "Serie criada com sucesso!" << endl;
-    }
     
 }
 

@@ -18,6 +18,7 @@ public:
     Streaming &operator << (Producao &p);//adiciona producao
     Streaming &operator >> (Producao &p);//remove producao
     virtual void run(Estado&) override;//executa o app exibir as producoes e o usuario escolhe uma para assistir
+    
 protected:
     vector<Producao*> producoes;
 };

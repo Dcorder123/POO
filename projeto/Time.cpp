@@ -42,3 +42,4 @@ void Hora::run(Estado& estado)
     cout << "Data: " << getDia() << "/" << getMes() << "/" << getAno() << endl;
     cout << "Hora: " << ( (getHora() == 0 || getHora() == 12) ? 12 : getHora() % 12) << ":" << setfill('0') << setw(2) << getMinuto() << ":" << setw(2) << getSegundo() << (getHora() < 12 ? " AM" : " PM") << endl;
 }
+

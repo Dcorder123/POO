@@ -7,6 +7,7 @@
 #include <vector>
 #include <fstream>
 #include "Estado.h"
+
 using std::vector;
 
 class SmartTV 
@@ -17,10 +18,13 @@ public:
     SmartTV(string marca, string modelo, string versao_so);
     void run();//executa o app
     void ligar();
-    void desligar();
+    virtual void desligar();
     void exibirApps();
-    bool salvarDados();
-    bool carregarDados();
+
+    string getMarca() const{ return marca; }
+    string getModelo() const{ return modelo; }
+    string get_versao_so() const{ return versao_so; }
+    
 
 protected:
     vector<App*> apps;

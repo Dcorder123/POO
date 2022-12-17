@@ -6,6 +6,11 @@
 #include "Time.h"
 #include "Estado.h"
 
+using std::left, std::right;
+
+#include <iomanip>
+using std::setw;
+using std::setfill;
 using std :: cout;
 using std :: endl;
 using std :: string;
@@ -50,7 +55,6 @@ void SmartTV::run()
         cout << "1 - Ligar" << endl;
         cout << "2 - Desligar" << endl;
         cout << "3 - Exibir apps" << endl;
-        cout << "4 - Sair" << endl;
         int opcao;
         cout << "Escolha uma opcao: ";
         cin >> opcao;
@@ -63,7 +67,7 @@ void SmartTV::run()
         continue;
         }
 
-    if (opcao < 1 || opcao > 4) {
+    if (opcao < 1 || opcao > 3) {
       std::cout << "Opcao inválida" << std::endl;
       continue;
     }
@@ -80,8 +84,6 @@ void SmartTV::run()
             estado.guardarEstado(1);
             this->exibirApps();
             break;
-        case 4:
-            return;
         default:
             cout << "Opcao invalida" << endl;
             break;
@@ -99,31 +101,46 @@ void SmartTV::exibirApps()
             cout << "-----------------------------------------------" << endl;
             cout << endl <<"Apps instalados: " << endl;
             cout << "Escolha um app: " << endl;
+            cout << right;
+            cout.fill('|');
+            cout << "-1 - Voltar " << endl;
+            
             for(int i = 0; i < apps.size(); i++)
             {
-                cout << i << " - " << apps[i]->getNome() << endl;
+                cout << setw(2) << i << " - " << apps[i]->getNome() << endl;
             }
-            double opcao;
             
-            cout << "ou para voltar pra o menu de opções digite -1: " ;
+            double opcao;
+            cout << "99 - Desligar " << endl;  
+            cout << "Escolha uma opcao: ";
             cin >> opcao;
+
             if (cin.fail()) {
-        // Limpar o estado de falha de entrada
+            // Limpar o estado de falha de entrada
             cin.clear();
             // Descartar o caractere inválido da entrada
             cin.ignore();
             std::cout << "Entrada inválida" << std::endl;
             continue;
             }
-            if (opcao >= 0 && opcao < apps.size())
+
+            if (opcao == 99)
+            {
+                estado.removerEstado();
+                desligar();
+            }
+
+            else if (opcao >= 0 && opcao < apps.size())
             {
                 apps[opcao]->run(estado);
             }
+
             else if(opcao == -1)
             {
                 estado.removerEstado();
                 return;
             }
+
             else if (opcao < 0 || opcao > apps.size()) {
             {
                 cout << "****************" << endl;
@@ -144,54 +161,15 @@ void SmartTV::exibirApps()
     }
 }
 
-bool SmartTV::salvarDados()
-{
-    ofstream arquivo;
-    arquivo.open("dados.txt", ios::out);
-    if(arquivo.is_open())
-    {
-        arquivo << "Marca: " << marca << endl;
-        arquivo << "Modelo: " << modelo << endl;
-        arquivo << "Versao do SO: " << versao_so << endl;
-        arquivo << "Apps instalados: " << endl;
-        for(int i = 0; i < apps.size(); i++)
-        {
-            arquivo << apps[i]->getNome() << endl;
-        }
-        arquivo.close();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
-bool SmartTV::carregarDados()
-{
-    ifstream arquivo;
-    arquivo.open("dados.txt", ios::in);
-    if(arquivo.is_open())
-    {
-        string linha;
-        while(getline(arquivo, linha))
-        {
-            cout << linha << endl;
-        }
-        arquivo.close();
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
 
 void SmartTV::ligar()
 {
     ligada = true;
     cout << "A TV foi ligada" << endl;
-    carregarDados();
+    cout << "-------------------" << endl;
+    
+    
     
 }
 
@@ -199,6 +177,7 @@ void SmartTV::desligar()
 {
     ligada = false;
     cout << "A TV foi desligada" << endl;
-    salvarDados();
+    cout << "-------------------" << endl;
+    exit (0);
 }
 // Path: projeto/SmartTV.h

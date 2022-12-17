@@ -14,7 +14,7 @@ public:
     string getNome()const{return nome;}
     string getVersao()const{return versao;}
     virtual void run(Estado&) = 0;
-protected:
+    protected:
     string nome;
     string versao;
 };

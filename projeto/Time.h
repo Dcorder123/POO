@@ -27,6 +27,7 @@ class Hora : public App
         int getSegundo()const{return segundo;} //retorna o segundo
         void horaAtual(); //retorna a hora atual
         virtual void run(Estado&) override;
+        
     protected:
         int Dia; 
         int Mes;

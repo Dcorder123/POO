@@ -1,6 +1,0 @@
-Marca: Samsung
-Modelo: QLED
-Versao do SO: Android
-Apps instalados: 
-Netflix
-Hora
