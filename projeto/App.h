@@ -11,8 +11,8 @@ public:
     App(string nome, string versao): nome(nome), versao(versao){}
     void setNome(string){this->nome = nome;}
     void setVersao(string){this->versao = versao;}
-    string getNome(){return nome;}
-    string getVersao(){return versao;}
+    string getNome()const{return nome;}
+    string getVersao()const{return versao;}
     virtual void run(Estado&) = 0;
 protected:
     string nome;
