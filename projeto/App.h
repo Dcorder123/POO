@@ -13,7 +13,7 @@ public:
     void setVersao(string){this->versao = versao;}
     string getNome()const{return nome;}
     string getVersao()const{return versao;}
-    virtual void run(Estado&) = 0;
+    virtual void run() = 0;
     protected:
     string nome;
     string versao;

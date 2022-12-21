@@ -42,7 +42,7 @@ Streaming &Streaming::operator >> (Producao &p)
     return *this;
 }
 
-void Streaming::run(Estado &e)
+void Streaming::run()
 {  
     while (true){
         cout << "Escolha uma producao para assistir: " << endl;

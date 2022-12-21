@@ -34,9 +34,9 @@ void Hora::horaAtual()
     this->segundo = now->tm_sec;
 }
 
-void Hora::run(Estado& estado)
+void Hora::run()
 {   
-    estado.guardarEstado(2);
+    
     // Imprime a data e hora atual.
     horaAtual();
     cout << "Data: " << getDia() << "/" << getMes() << "/" << getAno() << endl;

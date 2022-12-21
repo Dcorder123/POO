@@ -5,6 +5,11 @@
 #include "App.h"
 #include "Time.h"
 #include "Estado.h"
+#include <exception>
+#include <vector>
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
 
 using std::left, std::right;
 
@@ -22,6 +27,10 @@ using std :: cin;
 using std :: ostream;
 using std :: istream;
 using std :: streamsize;
+using std :: tolower;
+using std :: toupper;
+
+
 
 
 SmartTV::SmartTV(string marca, string modelo, string versao_so): marca(marca), modelo(modelo), versao_so(versao_so){
@@ -44,51 +53,9 @@ SmartTV &operator >> (SmartTV &s, App &a)
     return s;
 }
 
-void SmartTV::run()
+void SmartTV::run(string nome)
 {
-    estado.guardarEstado(0);
-    while (true)
-    {
-        
-        cout << "                      Menu" << endl;
-        cout << "-----------------------------------------------" << endl;
-        cout << "1 - Ligar" << endl;
-        cout << "2 - Desligar" << endl;
-        cout << "3 - Exibir apps" << endl;
-        int opcao;
-        cout << "Escolha uma opcao: ";
-        cin >> opcao;
-        if (cin.fail()) {
-      // Limpar o estado de falha de entrada
-        cin.clear();
-        // Descartar o caractere inválido da entrada
-        cin.ignore();
-        std::cout << "Entrada inválida" << std::endl;
-        continue;
-        }
-
-    if (opcao < 1 || opcao > 3) {
-      std::cout << "Opcao inválida" << std::endl;
-      continue;
-    }
-
-        switch (opcao)
-        {
-        case 1:
-            this->ligar();
-            break;
-        case 2:
-            this->desligar();
-            break;
-        case 3:
-            estado.guardarEstado(1);
-            this->exibirApps();
-            break;
-        default:
-            cout << "Opcao invalida" << endl;
-            break;
-        }
-    }
+    menu();
     
 }
 
@@ -110,49 +77,56 @@ void SmartTV::exibirApps()
                 cout << setw(2) << i << " - " << apps[i]->getNome() << endl;
             }
             
-            double opcao;
+            string nome;
             cout << "99 - Desligar " << endl;  
-            cout << "Escolha uma opcao: ";
-            cin >> opcao;
-
-            if (cin.fail()) {
-            // Limpar o estado de falha de entrada
-            cin.clear();
-            // Descartar o caractere inválido da entrada
-            cin.ignore();
-            std::cout << "Entrada inválida" << std::endl;
-            continue;
-            }
-
-            if (opcao == 99)
+            cout << "Digite a opcao: ";
+            try {
+            // Lê a string do usuário
+            getline(cin, nome);
+            //cin >> nome;
+            if (nome == "99")
             {
-                estado.removerEstado();
                 desligar();
             }
-
-            else if (opcao >= 0 && opcao < apps.size())
+            else if (nome == "-1")
             {
-                apps[opcao]->run(estado);
+                menu();
+            }
+            // Verifica se a string está vazia
+            if (nome.empty()) {
+            throw std::runtime_error("A string está vazia");
+            }
+            for (int i = 0; i < nome.length();i+=1){
+                if (isdigit(nome[i])){
+                    throw std::invalid_argument("A string é um nome ou número inválido");
+                }
             }
 
-            else if(opcao == -1)
-            {
-                estado.removerEstado();
-                return;
+            // Verifica se a string é um número válido
+            if (!std::all_of(nome.begin(), nome.end(), ::isdigit)) {
+            throw std::invalid_argument("A string é um nome ou número inválido");
             }
 
-            else if (opcao < 0 || opcao > apps.size()) {
-            {
-                cout << "****************" << endl;
-                cout << "*"<< "Opcao invalida" << "*"<<endl;
-                cout << "****************" << endl;
-                continue;
+            } 
+            catch (std::runtime_error& e) {
+            // Trata a exceção de string vazia
+            std::cout << "Erro: " << e.what() << std::endl;
+            } 
+            catch (std::invalid_argument& e) {
+            // Trata a exceção de string inválida
+            std::cout << "Erro: " << e.what() << std::endl;
             }
             
+            for(int i = 0; i < apps.size(); i++)
+            {
+            if(nome == apps[i]->getNome())
+                {
+                apps[i]->run();
+                }
+            }   
         }
-        
     }
-}
+
     else if (!ligada)
     {
         cout << endl << "-------------------" << endl;
@@ -166,8 +140,9 @@ void SmartTV::exibirApps()
 void SmartTV::ligar()
 {
     ligada = true;
+    cout << "=================" << endl;
     cout << "A TV foi ligada" << endl;
-    cout << "-------------------" << endl;
+    cout << "=================" << endl;
     
     
     
@@ -180,4 +155,63 @@ void SmartTV::desligar()
     cout << "-------------------" << endl;
     exit (0);
 }
+
+void SmartTV::menu()
+{
+    while (true)
+    {
+        /* code */
+        cout << "                      Menu" << endl;
+    cout << "-----------------------------------------------" << endl;
+    cout << "1 - Ligar" << endl;
+    cout << "2 - Desligar" << endl;
+    cout << "3 - Exibir apps" << endl;
+    string opcao;
+    bool opcaoValida = false;
+    
+    while (!opcaoValida)
+    {
+    cout << "Escolha uma opcao: ";
+    cin >> opcao;
+    if (opcao == "1")
+    {
+        opcaoValida = true;
+        this->ligar(); 
+    }
+    else if (opcao == "2")
+    {
+        opcaoValida = true;
+        this->desligar();
+    }
+    else if (opcao == "3")
+    {
+        opcaoValida = true;
+        this->exibirApps();
+    }
+    else
+    {   
+        cout << "Opcao invalida" << endl;
+        opcaoValida = false;
+        }
+        }
+    }
+    
+}
+
+void SmartTV::exibirAppsInstalados()
+{
+    cout << "Apps instalados: " << endl;
+    for(int i = 0; i < apps.size(); i++)
+    {
+        cout << apps[i]->getNome() << endl;
+        
+    }
+}
+
+
+
+
+
+
+
 // Path: projeto/SmartTV.h

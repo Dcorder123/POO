@@ -46,7 +46,7 @@ void Console::run(vector<SmartTV> smartTVs)
         }
         else
         {
-            smartTVs[opcao].run();
+            smartTVs[opcao].run("");
         }
 }
 }
