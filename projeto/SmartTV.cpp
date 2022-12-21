@@ -208,10 +208,4 @@ void SmartTV::exibirAppsInstalados()
     }
 }
 
-
-
-
-
-
-
 // Path: projeto/SmartTV.h
