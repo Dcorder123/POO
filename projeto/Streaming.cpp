@@ -4,6 +4,8 @@
 #include "Filme.h"
 #include "Series.h"
 #include <fstream>
+#include <string>
+#include <exception>
 using std :: ifstream;
 using std :: ofstream;
 
@@ -45,35 +47,50 @@ Streaming &Streaming::operator >> (Producao &p)
 void Streaming::run()
 {  
     while (true){
-        cout << "Escolha uma producao para assistir: " << endl;
+        cout << endl;
+        cout << "Escolha uma produção para assistir: " ;
         cout << *this;
         cout << "Escolha: ";
         
-        double escolha;
-        cin >> escolha;
-        if (cin.fail()) {
-            // Limpar o estado de falha de entrada
-            cin.clear();
-            // Descartar o caractere inválido da entrada
-            cin.ignore();
-            // Descartar a linha inteira
-            cout << "Entrada invalida" << endl;
-            continue;
-        }
-        if  (escolha == -1)
+        string escolha;
+        try {
+            cin >> escolha;
+            if  (escolha == "-1")
         {
             return;
         }
-        else if (escolha == 99){
+        else if (escolha == "99"){
             cout << "Desligando..." << endl;
             exit(0);
             return;
         }
-
-        cout << "Assistindo: " << producoes[escolha]->getNome() << endl;
-        cout << endl;
-        producoes[escolha]->play();
-
+         for (int i = 0; i < nome.length();i+=1){
+                if (isdigit(nome[i])){
+                    int escolha_int = stoi(escolha);
+                    if (escolha_int < 0 || escolha_int >= producoes.size())
+                    {
+                        throw std::runtime_error("\033[31mProdução não encontrado\033[0m");
+                    }
+                    else{
+                        cout << "Assistindo: " << producoes[escolha_int]->getNome() << endl;
+                        cout << endl;
+                        producoes[escolha_int]->play();
+                        cout << "Fim da reprodução";
+                        cout << endl;
+                    }
+                }
+                else{
+                    throw std::runtime_error("\033[31mProdução não encontrado digite um numero\033[0m");
+                }
+            }
+        
+        } 
+        catch (std::runtime_error& e) {
+            // Trata a exceção de string vazia
+            std::cout << "\033[31mErro: \033[0m" << e.what() << std::endl;
+            }
+        
+        
         }
     
 }

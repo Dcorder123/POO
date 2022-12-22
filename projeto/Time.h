@@ -7,12 +7,15 @@
 using namespace std;
 
 #include "App.h"
-
+/*Classe Hora que herda da classe App
+ contém o dia, mes, ano, hora, minuto e segundo
+ tem o metodo imprimir que imprime o dia, mes, ano, hora, minuto e segundo
+*/
 class Hora : public App
 {
     public:
-        Hora();
-        Hora(int Dia, int Mes, int Ano, int hora, int minuto, int segundo);
+        Hora();/*construtor da classe Hora*/
+        Hora(int Dia, int Mes, int Ano, int hora, int minuto, int segundo);/*construtor da classe Hora*/
         void setDia(int Dia){this->Dia = Dia;} //seta o dia
         int getDia()const{return Dia;} //retorna o dia
         void setMes(int Mes){this->Mes = Mes;} //seta o mes
@@ -26,7 +29,7 @@ class Hora : public App
         void setSegundo(int segundo){this->segundo = segundo;} //seta o segundo
         int getSegundo()const{return segundo;} //retorna o segundo
         void horaAtual(); //retorna a hora atual
-        virtual void run() override;
+        virtual void run() override;/*metodo virtual que imprime o dia, mes, ano, hora, minuto e segundo*/
         
     protected:
         int Dia; 

@@ -10,26 +10,14 @@
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
-
+#include <cstring>
+#include <cctype>
+#include <functional>
 using std::left, std::right;
 
 #include <iomanip>
-using std::setw;
-using std::setfill;
-using std :: cout;
-using std :: endl;
-using std :: string;
-using std :: vector;
-using std :: ifstream;
-using std :: ofstream;
-using std :: ios;
-using std :: cin;
-using std :: ostream;
-using std :: istream;
-using std :: streamsize;
-using std :: tolower;
-using std :: toupper;
 
+using namespace std;
 
 
 
@@ -70,25 +58,27 @@ void SmartTV::exibirApps()
             cout << "Escolha um app: " << endl;
             cout << right;
             cout.fill('|');
-            cout << "-1 - Voltar " << endl;
+            cout << "- Voltar " << endl;
+            cout << "- Desligar " << endl;  
             
             for(int i = 0; i < apps.size(); i++)
             {
-                cout << setw(2) << i << " - " << apps[i]->getNome() << endl;
+                cout << setw(2) << i+1 << " - " << apps[i]->getNome() << endl;
             }
             
             string nome;
-            cout << "99 - Desligar " << endl;  
-            cout << "Digite a opcao: ";
+            
+            cout << "Digite o nome da opção: ";
             try {
             // Lê a string do usuário
-            getline(cin, nome);
-            //cin >> nome;
-            if (nome == "99")
+            //getline(cin, nome);
+            cin >> nome;
+            nome[0] = toupper(nome[0]);
+            if (nome == "Desligar")
             {
                 desligar();
             }
-            else if (nome == "-1")
+            else if (nome == "Voltar")
             {
                 menu();
             }
@@ -98,39 +88,42 @@ void SmartTV::exibirApps()
             }
             for (int i = 0; i < nome.length();i+=1){
                 if (isdigit(nome[i])){
-                    throw std::invalid_argument("A string é um nome ou número inválido");
+                    throw std::runtime_error("\033[31mVocê digitou um número e não o nome do app \033[0m");
+                    
                 }
             }
-
-            // Verifica se a string é um número válido
-            if (!std::all_of(nome.begin(), nome.end(), ::isdigit)) {
-            throw std::invalid_argument("A string é um nome ou número inválido");
+            int sucess = 0;
+            for (int i = 0; i < apps.size(); i++)
+            {
+                if(nome == apps[i]->getNome())
+                {
+                    apps[i]->run();
+                    sucess = 1;
+                }
+                
+            }
+            if (sucess == 0)
+            {
+                throw std::runtime_error("\033[31mApp não encontrado\033[0m");
+            }
             }
 
-            } 
             catch (std::runtime_error& e) {
             // Trata a exceção de string vazia
-            std::cout << "Erro: " << e.what() << std::endl;
+            std::cout << "\033[31mErro: \033[0m" << e.what() << std::endl;
             } 
             catch (std::invalid_argument& e) {
             // Trata a exceção de string inválida
-            std::cout << "Erro: " << e.what() << std::endl;
+            std::cout << "\033[31mErro: \033[0m" << e.what() << std::endl;
             }
             
-            for(int i = 0; i < apps.size(); i++)
-            {
-            if(nome == apps[i]->getNome())
-                {
-                apps[i]->run();
-                }
-            }   
         }
     }
 
     else if (!ligada)
     {
         cout << endl << "-------------------" << endl;
-        cout << "A TV esta desligada" << endl;
+        cout << "\033[35mA TV esta desligada\033[0m" << endl;
         cout << "-------------------" << endl<< endl;
     }
 }
@@ -141,7 +134,7 @@ void SmartTV::ligar()
 {
     ligada = true;
     cout << "=================" << endl;
-    cout << "A TV foi ligada" << endl;
+    cout << "\033[35mA TV foi ligada\033[0m" << endl;
     cout << "=================" << endl;
     
     
@@ -151,7 +144,7 @@ void SmartTV::ligar()
 void SmartTV::desligar()
 {
     ligada = false;
-    cout << "A TV foi desligada" << endl;
+    cout << "\033[35mA TV foi desligada\033[0m" << endl;
     cout << "-------------------" << endl;
     exit (0);
 }

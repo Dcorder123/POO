@@ -61,7 +61,7 @@ void Console::main()
     /*criando streaming*/
     Streaming netflix("Netflix", "Brasil");
     Streaming disney("Disney+", "Brasil");
-    Streaming amazon("Amazon Prime", "Brasil");
+    Streaming amazon("Prime", "Brasil");
 
     Hora h1;
     Diretor d2("Francis Ford Coppola", 27);
