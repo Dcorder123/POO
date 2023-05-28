@@ -17,7 +17,7 @@
 <br> 
 
 ### 👨🏻‍💻 Technologies
-<img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45"> &nbsp;
+<img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png" alt="C++" width="45"> &nbsp;
 
 <div align="left">
 
