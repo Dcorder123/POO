@@ -12,12 +12,12 @@
 </p>
 <br>
 
-<img  alt="Wallpaper"  src="https://www.ateomomento.com.br/wp-content/uploads/2015/06/programacao-orientada-a-objetos.png" width="50%">
+<img  alt="Wallpaper"  src="https://user-images.githubusercontent.com/101361658/241575936-18408d75-6776-43d7-be8f-aaae3f6d6b2c.png" width="50%">
 
 <br> 
 
 ### 👨🏻‍💻 Technologies
-img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45" alt="C++"/>
+img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45" alt="C++"/> &nbsp;
 
 
 ### 📚 What I learned?
