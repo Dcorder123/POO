@@ -19,9 +19,11 @@
 ### 👨🏻‍💻 Technologies
 <img src="https://cdn-icons-png.flaticon.com/512/6132/6132222.png" alt="C++" width="45"> &nbsp;
 
-<div align="left">
+
 
 ### 📚 What I learned?
+
+<div align="left">
 
 - [x] Classes           <br>
 - [x] Encapsulation    <br>
