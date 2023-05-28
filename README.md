@@ -17,20 +17,22 @@
 <br> 
 
 ### 👨🏻‍💻 Technologies
-img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45"> &nbsp;
+<img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45"> &nbsp;
 
 <div align="left">
+
 ### 📚 What I learned?
-- [x] Classes
-- [x] Encapsulation
-- [x] Inheritance
-- [x] Polymorphism
-- [x] Abstract Classes
-- [x] Virtual Functions
-- [x] Templates
-- [x] Exception Handling
-- [x] Files
-- [x] Namespaces
+
+- [x] Classes           <br>
+- [x] Encapsulation    <br>
+- [x] Inheritance     <br>
+- [x] Polymorphism   <br>
+- [x] Abstract Classes <br>
+- [x] Virtual Functions <br>
+- [x] Templates <br>
+- [x] Exception Handling <br>
+- [x] Files and Streams <br>
+- [x] Namespaces <br>
 
 </div>
 
