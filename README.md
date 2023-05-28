@@ -17,9 +17,9 @@
 <br> 
 
 ### 👨🏻‍💻 Technologies
-img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45" alt="C++"/> &nbsp;
+img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45"> &nbsp;
 
-
+<div align="left">
 ### 📚 What I learned?
 - [x] Classes
 - [x] Encapsulation
@@ -31,6 +31,8 @@ img src="https://logospng.org/wp-content/uploads/c-plus-plus.png" width="45" alt
 - [x] Exception Handling
 - [x] Files
 - [x] Namespaces
+
+</div>
 
 ### how to run the code?
 ```bash
